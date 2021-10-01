@@ -17,38 +17,38 @@
 namespace VIO {
 
 class RosDisplay : public DisplayBase {
- public:
-  KIMERA_POINTER_TYPEDEFS(RosDisplay);
-  KIMERA_DELETE_COPY_CONSTRUCTORS(RosDisplay);
+  public:
+    KIMERA_POINTER_TYPEDEFS(RosDisplay);
+    KIMERA_DELETE_COPY_CONSTRUCTORS(RosDisplay);
 
- public:
-  RosDisplay();
-  virtual ~RosDisplay() = default;
+  public:
+    RosDisplay();
+    virtual ~RosDisplay() = default;
 
- public:
-  /**
-   * @brief spinOnce
-   * Spins the display once to render the visualizer output.
-   * @param viz_output
-   */
-  void spinOnce(DisplayInputBase::UniquePtr&& viz_output) override;
+  public:
+    /**
+     * @brief spinOnce
+     * Spins the display once to render the visualizer output.
+     * @param viz_output
+     */
+    void spinOnce(DisplayInputBase::UniquePtr&& viz_output) override;
 
- protected:
-  /**
-   * @brief spin2dWindow Publishes images to ROS
-   * @param viz_output Input from the display queue
-   */
-  void spin2dWindow(const DisplayInputBase& viz_output);
+  protected:
+    /**
+     * @brief spin2dWindow Publishes images to ROS
+     * @param viz_output Input from the display queue
+     */
+    void spin2dWindow(const DisplayInputBase& viz_output);
 
- private:
-  //! Ros
-  ros::NodeHandle nh_private_;
+  private:
+    //! Ros
+    ros::NodeHandle nh_private_;
 
-  //! Define image publishers manager
-  std::unique_ptr<ImagePublishers> image_publishers_;
+    //! Define image publishers manager
+    std::unique_ptr<ImagePublishers> image_publishers_;
 
-  //! Define frame ids for odometry message
-  std::string base_link_frame_id_;
+    //! Define frame ids for odometry message
+    std::string base_link_frame_id_;
 };
 
 }  // namespace VIO
